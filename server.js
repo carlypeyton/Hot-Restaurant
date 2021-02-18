@@ -73,6 +73,8 @@ app.post("/api/reservations", (req, res) => {
   const newReservation = req.body;
 
   reservations.push(newReservation);
+
+  res.send(reservations.length);
 }),
   app.delete("/api/reservations", (req, res) => {
     reservations = [];
