@@ -30,22 +30,25 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script>
-        fetch(`/api/reservations`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }).then((response) => response.json())
-            .then((data) => {
-                let currentTables = data.slice(0, 5)
-                let waitList = data.slice(5)
-                currentTables.map(table => {
-                    $("#tables").append(table)
-                }).join("")
-                waitList.map(wait => {
-                    $("#wait").append(wait)
-                }).join("")
-            })
+        $(document).ready(function () {
+            fetch(`/api/reservations`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }).then((response) => response.json())
+                .then((data) => {
+                    console.log(data)
+                    let currentTables = data.slice(0, 5)
+                    let waitList = data.slice(5)
+                    currentTables.map(table => {
+                        $("#tables").append(`<div>${table.name}${table.email}${table.phone}${table.uniqueId}</div>`)
+                    }).join("")
+                    waitList.map(wait => {
+                        $("#wait").append(`<div>${wait.name}${wait.email}${wait.phone}${wait.uniqueId}</div>`)
+                    }).join("")
+                })
+        })
     </script>
 </body>
 
