@@ -74,7 +74,7 @@ app.post("/api/reservations", (req, res) => {
 
   reservations.push(newReservation);
 
-  res.send(reservations.length);
+  res.json(reservations);
 }),
   app.delete("/api/reservations", (req, res) => {
     reservations = [];
